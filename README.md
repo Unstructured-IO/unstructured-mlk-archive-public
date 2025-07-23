@@ -171,14 +171,6 @@ The processed output of the ETL is available via an ElasticSearch database as ex
    pip install -r requirements.txt
    ```
 
-3. Create a `credentials.py` file with your credentials:
-   ```python
-   ELASTICSEARCH_HOSTS=your-elasticsearch-host
-   ELASTICSEARCH_API_KEY=your-elasticsearch-api-key
-   ELASTICSEARCH_INDEX_NAME=mlk-archive-public
-   OPENAI_API_KEY=your-openai-api-key
-   ```
-
 ### Using the RAG Application
 
 Open and run the Jupyter notebook:
