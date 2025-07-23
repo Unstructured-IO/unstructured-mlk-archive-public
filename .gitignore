@@ -1,0 +1,15 @@
+# Sensitive credentials and environment
+credentials.py
+mlk_archive_rag_applicaitons_credentials.py
+
+# Notebooks and scripts (intermediate/experimental)
+MLK_Archive_RAG_Application.py
+S3_to_Elastic_Workflow_using_Unstructured_API.py
+S3_to_Elastic_Workflow_using_Unstructured_API.ipynb
+
+# Python virtual environment
+mlk_scraper_env/
+mlk_scraper_env
+
+# Python cache
+__pycache__/
