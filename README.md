@@ -10,7 +10,7 @@ The project consists of these main components:
 
 1. **Web Scraper**: Scripts to scrape MLK assassination records from the National Archives website
 2. **S3 Uploader**: Tools to upload the scraped documents to Amazon S3 for storage
-3. **Transforming Archive Documents**: This step was performed using the Unstructured UI to process the documents from the National Archives and store them in a ElasticSearch database
+3. **Transforming Archive Documents**: This step was performed using the Unstructured UI to process the documents from the National Archives and store them in an ElasticSearch database
 4. **RAG Application**: A Jupyter notebook "MLK_Archive_RAG_Application.ipynb" that implements a question-answering system using the processed documents
 5. **Release of Processed Results**: The processed data from the MLK archive documents is publicly available via AWS S3 bucket: http://example-transformations-mlk-archive.s3-website-us-east-1.amazonaws.com/
 
