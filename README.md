@@ -4,7 +4,7 @@ This repository contains tools for scraping, processing, and exploring the Marti
 
 ## Project Overview
 
-Dr. Martin Luther King Jr.'s legacy is one of courage, justice, and transformation. The declassified records surrounding his assassination (hosted by the <a href="https://example-transformations-mlk-archive.s3.us-east-1.amazonaws.com/transformed-data/mlk-archive-public.jsonl">National Archives</a>) are a vital part of the historical record. This project aims to make these documents more accessible and searchable using modern AI and data processing technologies.
+Dr. Martin Luther King Jr.'s legacy is one of courage, justice, and transformation. The declassified records surrounding his assassination (hosted by the <a href="https://www.archives.gov/research/mlk">National Archives</a>) are a vital part of the historical record. This project aims to make these documents more accessible and searchable using modern AI and data processing technologies.
 
 The project consists of these main components:
 
@@ -161,8 +161,7 @@ The processed output of the ETL is available via an ElasticSearch database as ex
 
 ### Prerequisites
 
-- Python 3.13.5
-- OpenAI API key
+- [OpenAI API key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key). On your Jupyter notebook server, you must set the environment variable `OPENAI_API_KEY` to this API key. To learn how, see your Jupyter notebook server provider's documentation.
 
 ### Environment Setup
 
