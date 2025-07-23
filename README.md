@@ -77,7 +77,7 @@ Each line in the JSONL file represents a document element with the following str
 
 ### Key Fields:
 - **element_id**: Unique identifier for each document element
-- **embeddings**: Vector embeddings for semantic search (1536-dimensional)
+- **embeddings**: Vector embeddings for semantic search (OpenAI text-embedding-3-large [dim 3072])
 - **text**: The processed text content with contextual prefix and original text
 - **type**: Element type (e.g., CompositeElement, NarrativeText, Title)
 - **record_id**: Unique identifier linking related elements from the same document
@@ -88,20 +88,7 @@ Each line in the JSONL file represents a document element with the following str
   - Original source URLs from the National Archives
   - HTML representation of the content
 
-## Data Processing Workflow
-
-This project followed this workflow:
-
-1. **Document Ingestion**: Original documents were scraped from the National Archives and stored in Amazon S3
-2. **Document Processing**: Documents were processed using the Unstructured platform with:
-   - VLM Partitioning for document segmentation
-   - Title-Based Chunking for semantic coherence
-   - Named Entity Recognition for metadata enrichment
-   - Vector Embedding for semantic search capabilities
-3. **Indexing**: Processed documents were indexed in Elasticsearch
-4. **RAG Application**: A question-answering system built with LangChain that retrieves relevant document chunks and generates answers
-
-### How the MLK Records Were Prepared for Search
+## How the MLK Records Were Prepared for Search
 
 > *Note: The steps below were completed prior to this notebook. You do not need to rerun them—they're included here to explain how the records were made searchable.*
 
