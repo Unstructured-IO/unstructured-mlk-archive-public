@@ -4,14 +4,15 @@ This repository contains tools for scraping, processing, and exploring the Marti
 
 ## Project Overview
 
-Dr. Martin Luther King Jr.'s legacy is one of courage, justice, and transformation. The declassified records surrounding his assassination (hosted by the <a href="https://example-transformations-mlk-archive.s3.us-east-1.amazonaws.com/transformed-data/mlk-archive-public.jsonl">National Archives</a>) are a vital part of the historical record. This project aims to make these documents more accessible and searchable using modern AI and data processing technologies.
+Dr. Martin Luther King Jr.'s legacy is one of courage, justice, and transformation. The declassified records surrounding his assassination (hosted by the <a href="https://www.archives.gov/research/mlk">National Archives</a>) are a vital part of the historical record. This project aims to make these documents more accessible and searchable using modern AI and data processing technologies.
 
-The project consists of three main components:
+The project consists of these main components:
 
 1. **Web Scraper**: Scripts to scrape MLK assassination records from the National Archives website
 2. **S3 Uploader**: Tools to upload the scraped documents to Amazon S3 for storage
-3. **Transforming Archive Documents**: This step was performed using the Unstructured UI to process the PDFs from the National Archives and store them in a ElasticSearch database
-4. **RAG Application**: A Jupyter notebook that implements a question-answering system using the processed documents
+3. **Transforming Archive Documents**: This step was performed using the Unstructured UI to process the documents from the National Archives and store them in an ElasticSearch database
+4. **RAG Application**: A Jupyter notebook "MLK_Archive_RAG_Application.ipynb" that implements a question-answering system using the processed documents
+5. **Release of Processed Results**: The processed data from the MLK archive documents is publicly available via AWS S3 bucket: http://example-transformations-mlk-archive.s3-website-us-east-1.amazonaws.com/
 
 ## Repository Structure
 
@@ -109,13 +110,25 @@ The declassified MLK assassination records were processed using the **Unstructur
 The Unstructured platform processed each document through a series of enrichment steps:
 
 1. **VLM Partitioning**  
-    Vision-Language Models (VLMs) segmented each document into meaningful sections, preserving layout and context. Because most documents were scanned images of typed pages—making OCR challenging—VLMs were chosen for partitioning.
+    Vision language models (VLMs) segmented each document into meaningful sections, preserving layout and context. Because most documents were scanned images of typed pages—making OCR challenging—VLMs were chosen for partitioning. Claude 3.7 Sonnet was used as the VLM provider. 
 
 2. **Title-Based Chunking**  
-   Documents were split into semantically coherent chunks using structural cues (like section headers) to improve context retention.
+   Documents were split into semantically coherent chunks using structural cues (like section headers) to improve context retention. A "Chunk by Title" chunking strategy with contextual chunking was used. The chunking parameters were:
+   ```
+   {
+   "contextual_chunking": true,
+   "combine_text_under_n_characters": 3000,
+   "include_original_elements": true,
+   "max_characters": 5500,
+   "multipage_sections": true,
+   "new_after_n_characters": 3500,
+   "overlap": 350,
+   "overlap_all": true
+   }
+   ```
 
 3. **Named Entity Recognition (NER)**  
-   Entities such as people, organizations, locations, and dates were extracted to enhance downstream filtering and relevance.
+   Entities such as people, organizations, locations, and dates were extracted to enhance downstream filtering and relevance. OpenAI GPT-4o was used with the default NER prompt. For more information about NER, please see our documentation: https://docs.unstructured.io/ui/enriching/ner
 
 4. **Vector Embedding**  
    Each chunk was embedded using OpenAI's `text-embedding-3-large` model (3072 dims), enabling semantic similarity search.
@@ -131,6 +144,12 @@ This end-to-end pipeline transformed the raw historical documents into a searcha
   - Metadata-based filtering and sorting  
   - Scalable querying across large document sets
 
+Access to this database is available using the following credentials:
+```
+ELASTICSEARCH_HOSTS: "https://mlk-archive-public.es.eastus.azure.elastic-cloud.com"
+ELASTICSEARCH_API_KEY: "S0I5ak5aZ0JwcE44OWFmcEpBb3M6dTlpYnVQbk9Ub2dKNk15LUpkT0JwUQ=="
+```
+
 ---
 
 #### Results
@@ -142,8 +161,7 @@ The processed output of the ETL is available via an ElasticSearch database as ex
 
 ### Prerequisites
 
-- Python 3.13.5
-- OpenAI API key
+- [OpenAI API key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key). On your Jupyter notebook server, you must set the environment variable `OPENAI_API_KEY` to this API key. To learn how, see your Jupyter notebook server provider's documentation.
 
 ### Environment Setup
 
