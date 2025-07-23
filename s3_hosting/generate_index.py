@@ -16,8 +16,8 @@ html = ['<html><body>']
 html.append('<h1>Processed Dataset</h1>')
 html.append(f'<p><a href="{PROCESSED_JSONL_URL}">Download mlk-archive-public.jsonl</a></p>')
 
-# Section: List all available S3 files
-html.append('<h1>Available Files</h1><ul>')
+# Section: List all National Archive S3 files
+html.append('<h1>Unprocessed National Archive Files</h1><ul>')  # ← Title updated here
 
 for page in paginator.paginate(Bucket=BUCKET, Prefix=PREFIX):
     for obj in page.get("Contents", []):
