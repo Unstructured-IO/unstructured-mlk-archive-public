@@ -110,7 +110,7 @@ The declassified MLK assassination records were processed using the **Unstructur
 The Unstructured platform processed each document through a series of enrichment steps:
 
 1. **VLM Partitioning**  
-    Vision-Language Models (VLMs) segmented each document into meaningful sections, preserving layout and context. Because most documents were scanned images of typed pages—making OCR challenging—VLMs were chosen for partitioning. Claude 3.7 Sonnet was used as the VLM provider. 
+    Vision language models (VLMs) segmented each document into meaningful sections, preserving layout and context. Because most documents were scanned images of typed pages—making OCR challenging—VLMs were chosen for partitioning. Claude 3.7 Sonnet was used as the VLM provider. 
 
 2. **Title-Based Chunking**  
    Documents were split into semantically coherent chunks using structural cues (like section headers) to improve context retention. A "Chunk by Title" chunking strategy with contextual chunking was used. The chunking parameters were:
